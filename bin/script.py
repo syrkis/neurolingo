@@ -64,10 +64,10 @@ print("STARTED HERE")
 dev_X, test_X, train_X = [embed(data) for data in [dev_X, test_X, train_X]]
 
 print("TRAINING")
-clf = make_pipeline(StandardScaler(),SVC(max_iter = 100000))
+clf = make_pipeline(StandardScaler(),SVC(max_iter=100))
 clf.fit(train_X, train_y)
 p = clf.predict(dev_X)
 
 print(f1_score(dev_y, p))
-
-pickle.dump(clf,open("SVM","wb"))
+print(clf.predict(test_X))
+pickle.dump(clf,open(f"svm_model","wb"))
